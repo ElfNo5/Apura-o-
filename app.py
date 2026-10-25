@@ -1,26 +1,22 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# Configuração da página para ocupar a tela toda sem margens
+# Configuração da página para ocupar a tela toda com layout moderno
 st.set_page_config(
-    page_title="Apuração 2026 · 2º turno",
-    page_icon="🇧🇷",
+    page_title="Apuração 2026 · Dashboard Interativo",
+    page_icon="🗳️",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# Remove margens e padding padrão do Streamlit para o HTML preencher a tela inteira
+# Estilização CSS do container Streamlit
 st.markdown("""
 <style>
-    /* Remove padding do container principal do Streamlit */
     .block-container {
         padding: 0rem !important;
         max-width: 100% !important;
     }
-    header[data-testid="stHeader"] {
-        display: none !important;
-    }
-    footer {
+    header[data-testid="stHeader"], footer {
         display: none !important;
     }
     body {
@@ -30,28 +26,27 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Seu HTML/JS original preservado integralmente
-HTML_ORIGINAL = """
+# HTML/CSS/JS expandido com novas funcionalidades
+HTML_EXPANDIDO = """
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Apuração 2026">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0f1318">
-<title>Apuração 2026 · 2º turno</title>
+<title>Apuração 2026 · Dashboard Expandido</title>
 <style>
 :root{--bg:#f4f5f7;--card:#fff;--tx:#1b1f24;--mut:#667085;--bd:#e4e7ec;--c1:#d92d3a;--c2:#1f6fe0;--ok:#12a150;--warn:#d98a00}
 @media(prefers-color-scheme:dark){:root{--bg:#0f1318;--card:#171c23;--tx:#eef1f5;--mut:#98a2b3;--bd:#262d37;--c1:#ff5a67;--c2:#4a93ff;--ok:#32d583;--warn:#fdb022}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 "Segoe UI",system-ui,sans-serif}
-.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 40px}
-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:16px}
-h1{font-size:22px;margin:0}h1 small{display:block;font-size:14px;color:var(--mut);font-weight:400}
+.wrap{max-width:1280px;margin:0 auto;padding:20px 16px 40px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+h1{font-size:24px;margin:0;cursor:pointer}h1 small{display:block;font-size:14px;color:var(--mut);font-weight:400}
+.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .live{font-size:14px;color:var(--mut);display:flex;align-items:center;gap:8px}
 .dot{width:10px;height:10px;border-radius:50%;background:var(--ok);animation:p 2s infinite}.dot.off{background:var(--warn);animation:none}
 @keyframes p{50%{opacity:.35}}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px}
+.btn{background:var(--card);border:1px solid var(--bd);color:var(--tx);padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--bd)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin-bottom:16px}
 .badge{display:inline-block;padding:4px 12px;border-radius:99px;font-size:14px;font-weight:600;background:var(--bd);color:var(--tx)}
 .badge.go{background:rgba(18,161,80,.15);color:var(--ok)}.badge.wait{background:rgba(217,138,0,.15);color:var(--warn)}
 .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;margin-bottom:16px}
@@ -69,10 +64,12 @@ h1{font-size:22px;margin:0}h1 small{display:block;font-size:14px;color:var(--mut
 .lead{text-align:center;font-size:18px;font-weight:600;margin:10px 0 4px}
 .prog{margin-top:16px}.prog .t{display:flex;justify-content:space-between;font-size:14px;color:var(--mut);margin-bottom:4px}
 .prog .tr{height:10px;background:var(--bd);border-radius:99px;overflow:hidden}.prog .tr i{display:block;height:100%;background:var(--ok);transition:width .6s}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:16px}
 .stat{background:var(--bg);border-radius:12px;padding:10px 12px}.stat span{display:block;font-size:13px;color:var(--mut)}.stat b{font-size:17px}
-.tools{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin:26px 0 12px}
-.tools h2{margin:0;font-size:19px}select{font:inherit;padding:6px 10px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx)}
+.tools{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin:24px 0 12px}
+.tools h2{margin:0;font-size:20px}
+.search-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type="text"], select{font:inherit;padding:8px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
 .uf{padding:14px 16px;border-left:6px solid var(--bd)}.uf.l1{border-left-color:var(--c1)}.uf.l2{border-left-color:var(--c2)}
 .uf .h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}.uf .h b{font-size:17px}.uf .h span{font-size:13px;color:var(--mut)}
@@ -81,8 +78,13 @@ h1{font-size:22px;margin:0}h1 small{display:block;font-size:14px;color:var(--mut
 .uf .f{display:flex;justify-content:space-between;font-size:13px;color:var(--mut)}
 .uf .who{font-weight:600}
 .empty{color:var(--mut);padding:8px 0}
-footer{margin-top:24px;font-size:13px;color:var(--mut);text-align:center}
+footer{margin-top:28px;font-size:13px;color:var(--mut);text-align:center}
 @media(max-width:620px){.big{font-size:40px}.cname{font-size:17px}}
+
+/* SIMULADOR */
+.sim-box{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin-bottom:20px}
+.sim-title{font-size:18px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.sim-range{width:100%;margin:10px 0}
 
 #fx{position:fixed;top:0;left:0;right:0;bottom:0;z-index:99;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px;overflow:hidden}
 #fx.on{display:flex}#fx canvas{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%}
@@ -97,17 +99,48 @@ footer{margin-top:24px;font-size:13px;color:var(--mut);text-align:center}
 @keyframes sob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(10px) rotate(4deg)}}
 @keyframes fl{to{filter:hue-rotate(35deg) brightness(1.2)}}@keyframes pop{to{transform:scale(1.08)}}
 @keyframes col{0%{color:#fff}25%{color:#ffe14d}50%{color:#ff9fd0}75%{color:#9ff0ff}100%{color:#fff}}
-body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
 </style></head><body><div class="wrap">
-<header><h1>Apuração das eleições 2026<small>2º turno · Presidente da República</small></h1>
-<div class="live"><span class="dot" id="dot"></span><span id="live">Conectando…</span></div></header>
+<header>
+  <h1>Apuração 2026<small>2º turno · Presidente da República</small></h1>
+  <div class="header-actions">
+    <button class="btn" id="btn-sound">🔊 Som: Desligado</button>
+    <button class="btn" id="btn-export">📥 Exportar CSV</button>
+    <div class="live"><span class="dot" id="dot"></span><span id="live">Conectando…</span></div>
+  </div>
+</header>
+
 <div id="br" class="card"><div class="empty">Carregando dados do TSE…</div></div>
-<div class="tools"><h2>Resultado por estado</h2>
-<label>Ordenar por: <select id="ord"><option value="nome">Ordem alfabética</option><option value="urnas">Mais urnas apuradas</option><option value="dif">Maior diferença</option><option value="eq">Mais disputados</option></select></label></div>
+
+<!-- SIMULADOR INTERATIVO -->
+<div class="sim-box">
+  <div class="sim-title">
+    <span>🧮 Simulador de Votos Restantes</span>
+    <span id="sim-pct-val" style="font-size:15px; color:var(--mut);">0% restante</span>
+  </div>
+  <input type="range" id="sim-range" class="sim-range" min="0" max="100" value="50">
+  <div id="sim-res" style="font-weight:600; font-size:15px; color:var(--tx);">Projeção com base na apuração atual...</div>
+</div>
+
+<div class="tools">
+  <h2>Resultado por estado</h2>
+  <div class="search-controls">
+    <input type="text" id="search" placeholder="Buscar estado (ex: SP, Bahia)...">
+    <select id="ord">
+      <option value="nome">Ordem alfabética</option>
+      <option value="urnas">Mais urnas apuradas</option>
+      <option value="dif">Maior diferença</option>
+      <option value="eq">Mais disputados</option>
+    </select>
+  </div>
+</div>
+
 <div id="uf" class="grid"></div>
+
 <footer>Fonte: resultados.tse.jus.br · Atualiza sozinho a cada poucos segundos · Resultado parcial, só o TSE proclama os eleitos.</footer>
 </div>
+
 <div id="fx"><canvas id="cv"></canvas><div class="e" id="fxe"></div><div class="t" id="fxt"></div><div class="s" id="fxs"></div><button id="fxb">Fechar</button></div>
+
 <script>
 const $=id=>document.getElementById(id);
 const nf=n=>Number(n).toLocaleString('pt-BR');
@@ -116,6 +149,28 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 const title=s=>s.toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase());
 const first=s=>{s=title(s);return s.length>12?s.split(' ')[0]:s};
 const FAV=13;let fxShown=null,fxMode='',fxRaf=0,parts=[];
+let audioEnabled=false;
+
+// Efeitos Sonoros com Web Audio API
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playBeep(freq=440, type='sine', duration=0.15) {
+  if(!audioEnabled) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type; osc.frequency.value = freq;
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+    osc.stop(audioCtx.currentTime + duration);
+  } catch(e){}
+}
+
+$('btn-sound').onclick = () => {
+  audioEnabled = !audioEnabled;
+  $('btn-sound').textContent = audioEnabled ? '🔊 Som: Ligado' : '🔇 Som: Desligado';
+  if(audioEnabled) playBeep(880, 'triangle', 0.2);
+};
+
 const cv=$('cv'),cx=cv.getContext('2d'),R=Math.random;
 function fxSize(){cv.width=innerWidth;cv.height=innerHeight}
 function burst(x,y){const h=R()*360;for(let i=0;i<70;i++){const a=R()*6.283,v=2+R()*6;parts.push({k:'f',x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:70,c:'hsl('+(h+R()*40)+',100%,60%)'})}}
@@ -128,16 +183,23 @@ function fxLoop(){const w=cv.width,h=cv.height;cx.clearRect(0,0,w,h);
   cx.strokeStyle='rgba(160,200,255,.65)';cx.lineWidth=2;cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(p.x+p.vx*1.2,p.y-p.s);cx.stroke();return p.y<h+30});
  if(parts.length>1800)parts.splice(0,parts.length-1800);fxRaf=requestAnimationFrame(fxLoop)}
 function fxStart(k,me,ot){const nm=title(me.nome||'Lula');$('fx').className='on '+k;fxMode=k;parts=[];fxSize();
- if(k==='win'){$('fxe').textContent='🥳🎉';$('fxt').textContent='🎊 '+nm.toUpperCase()+' ELEITO! 🎊';$('fxs').textContent='Presidente da República · 2026 🇧🇷🎆'}
- else{$('fxe').textContent='😭';$('fxt').textContent=nm+' não foi eleito…';$('fxs').textContent=(ot&&ot.nome?title(ot.nome)+' foi eleito(a). ':'')+'Hoje a chuva é de lágrimas 💧'}
+ if(k==='win'){
+   $('fxe').textContent='🥳🎉';$('fxt').textContent='🎊 '+nm.toUpperCase()+' ELEITO! 🎊';$('fxs').textContent='Presidente da República · 2026 🇧🇷🎆';
+   playBeep(523, 'sine', 0.3); setTimeout(()=>playBeep(659, 'sine', 0.4), 150);
+ } else {
+   $('fxe').textContent='😭';$('fxt').textContent=nm+' não foi eleito…';$('fxs').textContent=(ot&&ot.nome?title(ot.nome)+' foi eleito(a). ':'')+'Hoje a chuva é de lágrimas 💧';
+   playBeep(200, 'sawtooth', 0.5);
+ }
  cancelAnimationFrame(fxRaf);fxLoop()}
 function fxClose(){$('fx').className='';cancelAnimationFrame(fxRaf);parts=[]}
 $('fxb').onclick=fxClose;addEventListener('resize',fxSize);
+
 function check(x){const i=x.cands.findIndex(c=>c.n===FAV);if(i<0)return;const me=x.cands[i],ot=x.cands[1-i];
  const k=me.eleito?'win':(ot.eleito?'lose':null);if(k&&k!==fxShown){fxShown=k;fxStart(k,me,ot)}}
+
 let taps=0,tt=0,dm=0;document.querySelector('h1').onclick=()=>{taps++;clearTimeout(tt);tt=setTimeout(()=>taps=0,1500);
  if(taps>=5){taps=0;fxStart(dm++%2?'lose':'win',{nome:'Lula'},{nome:'Adversário'})}};
-if(location.hash==='#ganhou')fxStart('win',{nome:'Lula'});if(location.hash==='#perdeu')fxStart('lose',{nome:'Lula'},{nome:'Adversário'});
+
 let data=null;
 function share(x){const t=x.cands[0].votos+x.cands[1].votos;return t?x.cands[0].votos/t*100:50}
 function lead(x){const [a,b]=x.cands;if(a.votos===b.votos)return null;const w=a.votos>b.votos?0:1;const t=a.votos+b.votos;
@@ -146,6 +208,29 @@ function status(x){const v=x.cands[0].votos+x.cands[1].votos;
  if(x.final)return['Totalização final','go'];if(x.definido)return['Resultado definido','go'];
  if(!x.dv&&v===0)return['Aguardando liberação dos votos','wait'];if(v===0||x.pst===0)return['Apuração ainda não começou','wait'];
  return['Apuração em andamento','go']}
+
+function updateSimulator(br) {
+  if(!br || !br.ok) return;
+  const val = parseInt($('sim-range').value);
+  $('sim-pct-val').textContent = val + '% dos votos restantes para C1';
+  const c1 = br.cands[0], c2 = br.cands[1];
+  const tVotos = c1.votos + c2.votos;
+  const pApurado = br.pst / 100;
+  if(pApurado === 0) return;
+  const totalEstimado = tVotos / pApurado;
+  const faltantes = Math.max(0, totalEstimado - tVotos);
+  
+  const novosC1 = c1.votos + (faltantes * (val / 100));
+  const novosC2 = c2.votos + (faltantes * ((100 - val) / 100));
+  const totalFinal = novosC1 + novosC2;
+  const pFinalC1 = (novosC1 / totalFinal) * 100;
+  const pFinalC2 = (novosC2 / totalFinal) * 100;
+  
+  const ldr = pFinalC1 > pFinalC2 ? c1.nome : c2.nome;
+  $('sim-res').innerHTML = `Com ${val}% do restante para ${esc(first(c1.nome))}, resultado final projetado: <span class="c1">${pc(pFinalC1)}</span> vs <span class="c2">${pc(pFinalC2)}</span> (Liderança: <b>${esc(title(ldr))}</b>)`;
+}
+$('sim-range').oninput = () => { if(data) updateSimulator(data.locais[0]); };
+
 function renderBR(x){
  if(!x||!x.ok){$('br').innerHTML='<div class="empty">Aguardando dados do TSE…'+(x&&x.erro?' ('+esc(x.erro)+')':'')+'</div>';return}
  check(x); const [a,b]=x.cands,s=share(x),L=lead(x),st=status(x),v=a.votos+b.votos;
@@ -160,7 +245,10 @@ function renderBR(x){
   '<div class="lead">'+msg+'</div>'+
   '<div class="prog"><div class="t"><span>Urnas apuradas</span><b>'+pc(x.pst)+' ('+nf(x.st)+' de '+nf(x.ts)+')</b></div><div class="tr"><i style="width:'+x.pst+'%"></i></div></div>'+
   '<div class="stats"><div class="stat"><span>Comparecimento</span><b>'+pc(x.pc)+'</b></div><div class="stat"><span>Abstenção</span><b>'+pc(x.pa)+'</b></div>'+
-  '<div class="stat"><span>Votos brancos</span><b>'+pc(x.pvb)+' · '+nf(x.brancos)+'</b></div><div class="stat"><span>Votos nulos</span><b>'+pc(x.ptvn)+' · '+nf(x.nulos)+'</b></div></div>'}
+  '<div class="stat"><span>Votos brancos</span><b>'+pc(x.pvb)+' · '+nf(x.brancos)+'</b></div><div class="stat"><span>Votos nulos</span><b>'+pc(x.ptvn)+' · '+nf(x.nulos)+'</b></div></div>';
+ updateSimulator(x);
+}
+
 function card(x){
  if(!x.ok)return '<div class="card uf"><div class="h"><b>'+esc(x.nome)+'</b><span>'+x.sigla.toUpperCase()+'</span></div><div class="empty">Sem dados ainda'+(x.erro?' ('+esc(x.erro)+')':'')+'</div></div>';
  const [a,b]=x.cands,v=a.votos+b.votos,s=share(x),L=lead(x);
@@ -169,11 +257,32 @@ function card(x){
   '<div class="p"><span class="c1">'+(v?pc(a.pct):'—')+'</span><span class="c2">'+(v?pc(b.pct):'—')+'</span></div>'+
   '<div class="bar"><i class="a" style="width:'+(v?s:50)+'%"></i><i class="b" style="width:'+(v?100-s:50)+'%"></i></div>'+
   '<div class="f">'+who+'<span>Urnas: '+pc(x.pst)+'</span></div></div>'}
+
 function renderUF(){
- if(!data)return;const o=$('ord').value;let l=data.locais.slice(1);
+ if(!data)return;const o=$('ord').value; const q=$('search').value.toLowerCase().trim();
+ let l=data.locais.slice(1);
+ if(q) l = l.filter(x => x.nome.toLowerCase().includes(q) || x.sigla.toLowerCase().includes(q));
  const k={nome:()=>0,urnas:x=>-x.pst,dif:x=>{const t=x.cands.length?x.cands[0].votos+x.cands[1].votos:0;return t?-Math.abs(share(x)-50):1},eq:x=>{const t=x.cands.length?x.cands[0].votos+x.cands[1].votos:0;return t?Math.abs(share(x)-50):99}}[o];
  if(o!=='nome')l.sort((p,q)=>k(p)-k(q));
  $('uf').innerHTML=l.map(card).join('')}
+
+$('search').oninput = renderUF;
+
+$('btn-export').onclick = () => {
+  if(!data) return;
+  let csv = 'UF,Nome,Cand1_Votos,Cand1_Pct,Cand2_Votos,Cand2_Pct,Urnas_Apuradas_Pct\n';
+  data.locais.forEach(x => {
+    if(x.ok && x.cands.length>=2) {
+      csv += `${x.sigla.toUpperCase()},"${x.nome}",${x.cands[0].votos},${x.cands[0].pct},${x.cands[1].votos},${x.cands[1].pct},${x.pst}\n`;
+    }
+  });
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'apuracao_eleicoes_2026.csv';
+  a.click();
+};
+
 const UFS=[["br", "Brasil"], ["ac", "Acre"], ["al", "Alagoas"], ["ap", "Amapá"], ["am", "Amazonas"], ["ba", "Bahia"], ["ce", "Ceará"], ["df", "Distrito Federal"], ["es", "Espírito Santo"], ["go", "Goiás"], ["ma", "Maranhão"], ["mt", "Mato Grosso"], ["ms", "Mato Grosso do Sul"], ["mg", "Minas Gerais"], ["pa", "Pará"], ["pb", "Paraíba"], ["pr", "Paraná"], ["pe", "Pernambuco"], ["pi", "Piauí"], ["rj", "Rio de Janeiro"], ["rn", "Rio Grande do Norte"], ["rs", "Rio Grande do Sul"], ["ro", "Rondônia"], ["rr", "Roraima"], ["sc", "Santa Catarina"], ["sp", "São Paulo"], ["se", "Sergipe"], ["to", "Tocantins"], ["zz", "Exterior"]];
 const N=v=>{const s=String(v==null?'':v).replace(/[^0-9-]/g,'');return s?parseInt(s,10):0};
 const D=v=>{const x=parseFloat(String(v==null?'':v).replace('%','').replace(',','.'));return isNaN(x)?0:x};
@@ -184,16 +293,4 @@ function build(sig,nome,r){const o={sigla:sig,nome:nome,ok:false,cands:[]};if(!r
  return Object.assign(o,{ok:true,cands:cs.slice(0,2),pst:D(s.pstn||s.pst),st:N(s.st),ts:N(s.ts),gerado:r.hg||'',dv:r.dv!=='n',final:r.tf==='s',definido:r.md==='e',brancos:N(v.vb),nulos:N(v.tvn),pvb:D(v.pvb),ptvn:D(v.ptvn),pc:D(e.pc),pa:D(e.pa),comp:N(e.c),abst:N(e.a)})}
 const cache={};
 async function one(u){try{const r=await fetch('https://resultados.tse.jus.br/oficial/ele2026/6258/dados/'+u[0]+'/'+u[0]+'-c0001-e006258-u.json');if(!r.ok)throw new Error('HTTP '+r.status);cache[u[0]]=build(u[0],u[1],await r.json())}
- catch(e){const old=cache[u[0]]||{sigla:u[0],nome:u[1],ok:false,cands:[]};old.erro=String(e.message||e);cache[u[0]]=old}return cache[u[0]]}
-async function load(){
- const locais=await Promise.all(UFS.map(one));data={agora:new Date().toLocaleTimeString('pt-BR'),locais:locais};
- renderBR(locais[0]);renderUF();const bad=locais.filter(l=>l.erro).length,g=locais[0].gerado;
- if(bad===locais.length){$('live').textContent='Sem conexão com o TSE ('+(locais[0].erro||'erro')+')… tentando de novo';$('dot').className='dot off'}
- else{$('live').textContent='Atualizado às '+data.agora+(g?' · dados do TSE das '+g:'')+(bad?' · '+bad+' falha(s)':'');$('dot').className='dot'}}
-try{navigator.wakeLock&&navigator.wakeLock.request('screen').catch(()=>{})}catch(e){}
-$('ord').onchange=renderUF;load();setInterval(load,5000);
-</script></body></html>
-"""
-
-# Renderiza o HTML exatamente como foi construído dentro do Streamlit
-components.html(HTML_ORIGINAL, height=2200, scrolling=True)
+ catch(e){const old=cache[u[0]]||{sigla:u[0],nome:u[1],ok:fa
