@@ -270,10 +270,10 @@ $('search').oninput = renderUF;
 
 $('btn-export').onclick = () => {
   if(!data) return;
-  let csv = 'UF,Nome,Cand1_Votos,Cand1_Pct,Cand2_Votos,Cand2_Pct,Urnas_Apuradas_Pct\n';
+  let csv = 'UF,Nome,Cand1_Votos,Cand1_Pct,Cand2_Votos,Cand2_Pct,Urnas_Apuradas_Pct\\n';
   data.locais.forEach(x => {
     if(x.ok && x.cands.length>=2) {
-      csv += `${x.sigla.toUpperCase()},"${x.nome}",${x.cands[0].votos},${x.cands[0].pct},${x.cands[1].votos},${x.cands[1].pct},${x.pst}\n`;
+      csv += `${x.sigla.toUpperCase()},"${x.nome}",${x.cands[0].votos},${x.cands[0].pct},${x.cands[1].votos},${x.cands[1].pct},${x.pst}\\n`;
     }
   });
   const blob = new Blob([csv], {type: 'text/csv'});
@@ -293,4 +293,4 @@ function build(sig,nome,r){const o={sigla:sig,nome:nome,ok:false,cands:[]};if(!r
  return Object.assign(o,{ok:true,cands:cs.slice(0,2),pst:D(s.pstn||s.pst),st:N(s.st),ts:N(s.ts),gerado:r.hg||'',dv:r.dv!=='n',final:r.tf==='s',definido:r.md==='e',brancos:N(v.vb),nulos:N(v.tvn),pvb:D(v.pvb),ptvn:D(v.ptvn),pc:D(e.pc),pa:D(e.pa),comp:N(e.c),abst:N(e.a)})}
 const cache={};
 async function one(u){try{const r=await fetch('https://resultados.tse.jus.br/oficial/ele2026/6258/dados/'+u[0]+'/'+u[0]+'-c0001-e006258-u.json');if(!r.ok)throw new Error('HTTP '+r.status);cache[u[0]]=build(u[0],u[1],await r.json())}
- catch(e){const old=cache[u[0]]||{sigla:u[0],nome:u[1],ok:fa
+ catch(e){const old=cache[u[0]]||{sigla:u[0],nome:u[1],ok:
